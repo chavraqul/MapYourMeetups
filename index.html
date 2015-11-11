@@ -3,7 +3,7 @@
 <head>
 	<title>Map Your Meetups</title>
 	<!-- Meta Tags -->
-	<meta charset="utf-8"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/reset.css">
@@ -12,6 +12,7 @@
 
 	<!-- JavaScript -->
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
 	<script type="text/javascript" src="js/auth.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 </head>
@@ -23,7 +24,7 @@
 	<form class="search-criteria">
 	  <input type="text" name="city-or-zipcode" id="city-or-zipcode" class="text" maxlength="25" autocomplete="off" placeholder="City or Zipcode" required/><br>
 	  <select name="meetups">
-	    <option value="">All Meetups</option>
+	    <option value="all">All Meetups</option>
 	    <option value="1">Arts & Culture</option>
 	    <option value="2">Career & Business</option>
 	    <option value="3">Cars & Motorcycles</option>
@@ -41,11 +42,11 @@
 	<!-- Modal Information Box -->
 	<div class="overlay" id="modal">
 		Google Maps with Meetup Locations goes here !
+		<br><a class="close" href="#">Exit</a>
 		<div class="content">
-			<!--
-			<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDoFnjotXjbMjCVoaooxmZ4H2ekYsaC3b8&zoom=10&center=30.2672%2C-97.7431" allowfullscreen></iframe> -->
+			<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDoFnjotXjbMjCVoaooxmZ4H2ekYsaC3b8&zoom=10&center=30.2672%2C-97.7431" allowfullscreen></iframe>
 		</div>
-		<a class="close" href="#">Exit</a>
+		
 	</div>		
 </body>
 </html>

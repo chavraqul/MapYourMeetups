@@ -15,56 +15,62 @@ $(document).ready(function(){
 
 		// call meetups api
 		getMeetups(place, meetups, distance);
-		setTimeout(function(){alert("Hello")},5000);
+		//setTimeout(function(){alert("Hello")},5000);
 	});
-});
-/*
- * Meetups api call
- * return findInMap
- */
-function getMeetups (place, meetups, distance) {
-	// request parameters to pass to Meetup's API
-	/*
-	var request = {//zip: place, //string
-		           location: place, //string
-				   //radius: distance, //integer
-				   //category: meetups, //integer
-				   //sign: true,
-				   //photo-host: public,
-				   page:20,
-				   key: meetupsKey
-				   };
-	var promise = $.ajax({
-		url: "https://api.meetup.com/find/groups",
-		data: request,
-		contentType: "application/json",
-		type: "GET"
-		})
-	.done(function(result){
-		console.log(result);
-		$.each(result, function(i, result) {
-			//get Latitude and longitude to in map
-			var lat = result[i].lat;
-			var lng = result[i].lon;
-			// call google maps api
-			getGoogleMaps(lat, lng);
-		});
-	})
-	.fail(function(jqXHR, error, errorThrown){
-		//var errorElem = showError(error);
-		//$('#modal').append(errorElem);
-		console.log($.get("https://api.meetup.com/find/groups?location=Austin&page=20&key=87a2148299157a5f12667c280696b"));
-	});
-*/
-$.get('http://api.meetup.com/find/groups?location=Austin&page=20&key=87a2148299157a5f12667c280696b', function(data){
-	console.log(data);
-});
 
-};
+	/*
+	 * Meetups api call
+	 * return findInMap
+	 */
+	function getMeetups (place, meetups, distance) {
+		// request parameters to pass to Meetup's API
+		var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+
+		var request = {//zip: place, //string
+			           location: place, //string
+					   //radius: distance, //integer
+					   //category: meetups, //integer
+					   //sign: true,
+					   //photo-host: public,
+					   fallback_suggestions: true,
+					   sign: true,
+					   page:0,
+					   key: meetupsKey
+					   };
+		$.ajax({
+			contentType: contentType,
+			url: "http://api.meetup.com/find/groups",
+			data: request,
+			//contentType: "application/json",
+			dataType: "json",
+			type: "GET"
+			})
+		.done(function(result){
+			console.log(result);
+			$.each(result, function(i, result) {
+				//get Latitude and longitude to in map
+				var lat = result[i].lat;
+				var lng = result[i].lon;
+				// call google maps api
+				//getGoogleMaps(lat, lng);
+			});
+		})
+		.fail(function(jqXHR, error, errorThrown){
+			//var errorElem = showError(error);
+			//$('#modal').append(errorElem);
+			console.log($.get("http://api.meetup.com/find/groups?location=Austin&page=20&key=87a2148299157a5f12667c280696b"));
+		});
+
+	//$.get('http://api.meetup.com/find/groups?location=Austin&page=20&key=87a2148299157a5f12667c280696b', function(data){
+	//	console.log(data);
+	//});
+
+	};
+});
 /*
  * Google Maps api call
  * @param findInMap
- */
+ 
 function getGoogleMaps (lat, lng) {
 	// request parameters to pass to Google Map's API
 	var request = {key: googleMapskey,
@@ -85,4 +91,4 @@ function getGoogleMaps (lat, lng) {
 		var errorElem = showError(error);
 		$('#modal').append(errorElem);
 	});
-};
+};*/
